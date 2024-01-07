@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Magic Button, Can you touch it! </title>
+    <meta name="description" content="Amaze your friend and loved one with this magic button made with HTML. You cannot touch it, if you try to do it, it'll move away instantly.">
+    <style>
+        
+      .lol {
+        font-family: 'Brush Script MT', cursive;
+        font-size: 65px;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      form {
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      label[for="email"], label[for="password"] {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      input[type="email"], input[type="password"] {
+        width: 250px;
+        height: 25px;
+        margin: 5px;
+        padding: 5px;
+        padding: 10px;
+        border-radius: 15px;
+      }
+
+      #mButton {
+        background-color: crimson;
+        padding: 20px 25px;
+        font-size: larger;
+        font-weight: bold;
+        padding: 10px;
+        border-radius: 15px;
+        margin-left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+
+<!-- Starting point here -->
+    <h1 class="lol">Hello, world!</h1>
+<!-- The form -->
+    <form>
+      <label for="email">Enter Your Email</label>
+      <br>
+      <input type="email" name="email" id="email" placeholder="Email/Phone/Username"> <!-- Email/Phone/Username -->
+      <br><br>
+      <label for="password">Enter Password</label>
+      <br>
+      <input type="password" name="password" id="password" placeholder="Password"> <!-- Password -->
+      <br>
+      <input type="checkbox" name="termClick" id="termClick" value="termClick">
+      <label for="termClick">Accept terms and conditions</label>
+      <br><br><br>
+      <input type="submit" value="Submit" id="mButton" onmouseover="magicEffect()"> <!-- Submit - Magic Button -->
+
+      <h4><b></b></h4>
+    </form>
+
+
+
+    <script>
+      console.log("Hello, world!");
+      let mbtn = document.getElementById("mButton");
+
+      function magicEffect(e) {
+        console.log("Magic effect begins!");
+        
+        let randomPx = Math.floor(Math.random() * (1000)); // Random number between 0 and 1000
+        console.log(randomPx);
+
+        if (randomPx <= 500) {
+          mbtn.style.marginLeft = `${randomPx}px`;
+        } else {
+          mbtn.style.marginLeft = `-${randomPx}px`;
+        }
+        document.querySelector("h4").innerHTML = `${randomPx}px! You cannot touch me!`;
+        console.log("Magic effect ends!");
+      };
+    </script>
+</html>

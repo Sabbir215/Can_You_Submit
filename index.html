@@ -8,7 +8,7 @@
     <style>
         
       .theHeader {
-        font-family: 'Brush Script MT', cursive;
+        font-family: 'Brush Script MT', cursive; 
         font-size: 65px;
         text-align: center;
         margin-top: 50px;
@@ -40,10 +40,18 @@
         font-weight: bold;
         padding: 10px;
         border-radius: 15px;
-        margin-left: 5px;
+      }
+
+      #midLine {
+        font-size: 25px;
+        display: none;
       }
     </style>
   </head>
+
+
+
+
   <body>
 
 <!-- Starting point here -->
@@ -60,33 +68,47 @@
       <br>
       <input type="checkbox" name="termClick" id="termClick" value="termClick">
       <label for="termClick">Accept terms and conditions</label>
-      <br><br><br>
-      <input type="submit" value="Submit" id="mButton" onmouseover="magicEffect()" onclick="magicEffect()"> <!-- Submit - Magic Button -->
+      <br><br>
+      <input type="submit" value="Submit" id="mButton"> <!-- Submit - Magic Button -->
+      <br>
+      <span id="midLine">|</span>
 
-      <h4><b></b></h4>
+      <h4><b>Don't forget your password!</b></h4>
     </form>
+  </body>
+
 
 
 
     <script>
       console.log("Hello, world!");
-      document.getElementById("formDemo").addEventListener("submit", function(event) {
-        event.preventDefault();
-      }); // Prevents the form from submitting
-      let mbtn = document.getElementById("mButton"); // Linking Magic button to a variable
+      
+      let mbtn = document.getElementById("mButton");
+      mbtn.addEventListener("click", magicEffect);
+      mbtn.addEventListener("mouseover", magicEffect); // Event listener for mouseover and click
 
-      function magicEffect() {
+
+      function magicEffect(e) {
+        e.preventDefault(); // Preventing default behaviour of the button like reloading the page
+
         console.log("Magic effect begins!");
+        document.getElementById("midLine").style.display = "inline"; // Displaying the midline
         
-        let randomPx = Math.floor(Math.random() * (1000)); // Random number between 0 and 1000
-        console.log(randomPx);
+        let deviceWidth = window.innerWidth;
+        console.log(`In ${deviceWidth}px device!`); // Getting the device width
+        
+        let randomPx = Math.floor(Math.random() * deviceWidth); // Random number between 0 and device width
 
-        if (randomPx <= 500) {
+        if (randomPx <= deviceWidth/2) {
           mbtn.style.marginLeft = `${randomPx}px`;
         } else {
-          mbtn.style.marginLeft = `-${randomPx}px`;
-        }
-        document.querySelector("h4").innerHTML = `${randomPx}px! You cannot touch me!`; // Displaying the random number and a message
+          mbtn.style.marginLeft = `-${randomPx/2}px`;
+        } // Moving the button to the random number of pixels
+
+        let highlightFeatureText = `${(randomPx > deviceWidth/2) ? randomPx/2 : randomPx}px! You cannot touch me!`;
+        console.log(highlightFeatureText);
+        document.querySelector("h4").innerHTML = highlightFeatureText; // Highlight feature text on the page
+
         console.log("Magic effect ends!");
       };
     </script>

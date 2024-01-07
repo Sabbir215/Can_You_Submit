@@ -7,7 +7,7 @@
     <meta name="description" content="Amaze your friend and loved one with this magic button made with HTML. You cannot touch it, if you try to do it, it'll move away instantly.">
     <style>
         
-      .lol {
+      .theHeader {
         font-family: 'Brush Script MT', cursive;
         font-size: 65px;
         text-align: center;
@@ -47,9 +47,9 @@
   <body>
 
 <!-- Starting point here -->
-    <h1 class="lol">Hello, world!</h1>
+    <h1 class="theHeader">Hello, world!</h1>
 <!-- The form -->
-    <form>
+    <form id="formDemo">
       <label for="email">Enter Your Email</label>
       <br>
       <input type="email" name="email" id="email" placeholder="Email/Phone/Username"> <!-- Email/Phone/Username -->
@@ -61,7 +61,7 @@
       <input type="checkbox" name="termClick" id="termClick" value="termClick">
       <label for="termClick">Accept terms and conditions</label>
       <br><br><br>
-      <input type="submit" value="Submit" id="mButton" onmouseover="magicEffect()"> <!-- Submit - Magic Button -->
+      <input type="submit" value="Submit" id="mButton" onmouseover="magicEffect()" onclick="magicEffect()"> <!-- Submit - Magic Button -->
 
       <h4><b></b></h4>
     </form>
@@ -70,9 +70,12 @@
 
     <script>
       console.log("Hello, world!");
-      let mbtn = document.getElementById("mButton");
+      document.getElementById("formDemo").addEventListener("submit", function(event) {
+        event.preventDefault();
+      }); // Prevents the form from submitting
+      let mbtn = document.getElementById("mButton"); // Linking Magic button to a variable
 
-      function magicEffect(e) {
+      function magicEffect() {
         console.log("Magic effect begins!");
         
         let randomPx = Math.floor(Math.random() * (1000)); // Random number between 0 and 1000
@@ -83,7 +86,7 @@
         } else {
           mbtn.style.marginLeft = `-${randomPx}px`;
         }
-        document.querySelector("h4").innerHTML = `${randomPx}px! You cannot touch me!`;
+        document.querySelector("h4").innerHTML = `${randomPx}px! You cannot touch me!`; // Displaying the random number and a message
         console.log("Magic effect ends!");
       };
     </script>

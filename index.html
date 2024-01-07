@@ -46,6 +46,16 @@
         font-size: 25px;
         display: none;
       }
+
+      footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #dcdcdc;
+        color: black;
+        text-align: center;
+        padding: 10px;
+      }
     </style>
   </head>
 
@@ -75,41 +85,48 @@
 
       <h4><b>Don't forget your password!</b></h4>
     </form>
+    <br><br><br><br>
+
+    <!-- Ending point here -->
+    <footer>
+      <p style="text-align: center;">Made with ❤️ by <a href="https://www.facebook.com/ucantansus">Ibrahim Sabbir</a></p>
+      <p><a href="https://www.facebook.com/ucantansus">Ibrahim Sabbir</a>, All right reserved &#169 2024</p>
+    </footer>
   </body>
 
 
 
 
-    <script>
-      console.log("Hello, world!");
+  <script>
+    console.log("Hello, world!");
+    
+    let mbtn = document.getElementById("mButton");
+    mbtn.addEventListener("click", magicEffect);
+    mbtn.addEventListener("mouseover", magicEffect); // Event listener for mouseover and click
+
+
+    function magicEffect(e) {
+      e.preventDefault(); // Preventing default behaviour of the button like reloading the page
+
+      console.log("Magic effect begins!");
+      document.getElementById("midLine").style.display = "inline"; // Displaying the midline
       
-      let mbtn = document.getElementById("mButton");
-      mbtn.addEventListener("click", magicEffect);
-      mbtn.addEventListener("mouseover", magicEffect); // Event listener for mouseover and click
+      let deviceWidth = window.innerWidth;
+      console.log(`In ${deviceWidth}px device!`); // Getting the device width
+      
+      let randomPx = Math.floor(Math.random() * deviceWidth); // Random number between 0 and device width
 
+      if (randomPx <= deviceWidth/2) {
+        mbtn.style.marginLeft = `${randomPx}px`;
+      } else {
+        mbtn.style.marginLeft = `-${randomPx - deviceWidth/2}px`;
+      } // Moving the button to the random number of pixels
 
-      function magicEffect(e) {
-        e.preventDefault(); // Preventing default behaviour of the button like reloading the page
+      let highlightFeatureText = `${(randomPx > deviceWidth/2) ? (randomPx - deviceWidth/2) : randomPx}px from the middle line! You cannot touch me!`;
+      console.log(highlightFeatureText);
+      document.querySelector("h4").innerHTML = highlightFeatureText; // Highlight feature text on the page
 
-        console.log("Magic effect begins!");
-        document.getElementById("midLine").style.display = "inline"; // Displaying the midline
-        
-        let deviceWidth = window.innerWidth;
-        console.log(`In ${deviceWidth}px device!`); // Getting the device width
-        
-        let randomPx = Math.floor(Math.random() * deviceWidth); // Random number between 0 and device width
-
-        if (randomPx <= deviceWidth/2) {
-          mbtn.style.marginLeft = `${randomPx}px`;
-        } else {
-          mbtn.style.marginLeft = `-${randomPx/2}px`;
-        } // Moving the button to the random number of pixels
-
-        let highlightFeatureText = `${(randomPx > deviceWidth/2) ? randomPx/2 : randomPx}px! You cannot touch me!`;
-        console.log(highlightFeatureText);
-        document.querySelector("h4").innerHTML = highlightFeatureText; // Highlight feature text on the page
-
-        console.log("Magic effect ends!");
-      };
-    </script>
+      console.log("Magic effect ends!");
+    };
+  </script>
 </html>
